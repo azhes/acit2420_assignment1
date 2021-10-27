@@ -1,0 +1,10 @@
+#!/bin/bash
+
+input="$1"
+number=0
+
+while IFS= read -r line
+do
+  ((number +=1))
+  echo "${number}. $line"
+done < "$input"
