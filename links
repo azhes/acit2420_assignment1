@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Display links on a webpage
+# Usage: links file [option]
+# Option: -f writes the output to a file
+
+url="$1"
+
+newFile="pageLinks"
+
+wget -O $newFile $url
+
+if [ "$2" == "-f" ]
+  then
+    grep -Po '(?<=href=")(https)[^"]*' $newFile > links_file
+  else
+    grep -Po '(?<=href=")(https)[^"]*' $newFile
+fi
+
+rm $newFile
+
