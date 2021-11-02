@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ ! -d "./Contacts" ]
+  then
+    mkdir Contacts
+fi
+
+if [ "$1" == "-a" ]
+  then
+    echo "Please insert a name: "
+    read name
+    echo "Please insert an address: "
+    read address
+    echo "Please insert an email address: "
+    read email
+    echo "Please insert a phone number: "
+    read phone
+    echo "Name: $name
+Address: $address
+Email: $email
+Phone Number: $phone" > "./Contacts/$name"
+    echo "Contact added."
+  elif [ "$1" == "-r" ]
+  then
+    echo "Please enter the name of the contact you want to remove: "
+    read name
+    rm "./Contacts/$name"
+    echo "Contact removed."
+  elif [ "$1" == "-d" ]
+  then
+  echo "Please enter the name of the contact you would like to view: "
+  read name
+    while IFS= read -r line
+      do
+        echo $line
+      done <"./Contacts/$name"
+  else
+    echo "Usage: ./contacts [-a (add a contact), -d (display contact information), -r (remove a contact)]"
+fi
+
