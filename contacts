@@ -32,7 +32,7 @@ remove_contact () {
 
 display_contact () {
 
-  echo "please enter the name of hte contact you would like to view: "
+  echo "please enter the name of the contact you would like to view: "
   read vwname
   while IFS= read -r line
     do
