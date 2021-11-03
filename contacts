@@ -40,13 +40,15 @@ display_contact () {
     done < "./Contacts/$vwname"
 }
 
-while getopts ":ard" opt; do
+while getopts ":ardh" opt; do
   case ${opt} in
     a ) add_contact
       ;;
     r ) remove_contact
       ;;
     d ) display_contact
+      ;;
+    h ) echo "Usage: cmd [-a] [-r] [-d]"
       ;;
     \? ) echo "Usage: cmd [-a] [-r] [-d]"
       ;;
