@@ -5,36 +5,36 @@ if [ ! -d "./Contacts" ]
     mkdir Contacts
 fi
 
-if [ "$1" == "-a" ]
-  then
-    echo "Please insert a name: "
-    read name
-    echo "Please insert an address: "
-    read address
-    echo "Please insert an email address: "
-    read email
-    echo "Please insert a phone number: "
-    read phone
-    echo "Name: $name
+while getopts ":ard" opt; do
+  case ${opt} in
+    a ) echo "Please enter a name: "
+        read name
+        echo "Please enter an address: "
+        read address
+        echo "Please enter an email address: "
+        read email
+        echo "Please enter a phone number: "
+        read phone
+        echo "Name: $name
 Address: $address
 Email: $email
 Phone Number: $phone" > "./Contacts/$name"
-    echo "Contact added."
-  elif [ "$1" == "-r" ]
-  then
-    echo "Please enter the name of the contact you want to remove: "
-    read name
-    rm "./Contacts/$name"
-    echo "Contact removed."
-  elif [ "$1" == "-d" ]
-  then
-  echo "Please enter the name of the contact you would like to view: "
-  read name
-    while IFS= read -r line
-      do
-        echo $line
-      done <"./Contacts/$name"
-  else
-    echo "Usage: ./contacts [-a (add a contact), -d (display contact information), -r (remove a contact)]"
-fi
+        echo "Contact added."
+      ;;
+    r ) echo "Please enter the name of the contact you want to remove: "
+        read rmname
+        rm "./Contacts/$rmname"
+        echo "Contact removed."
+      ;;
+    d ) echo "please enter the name of hte contact you would like to view: "
+        read vwname
+        while IFS= read -r line
+          do
+            echo $line
+          done < "./Contacts/$vwname"
+      ;;
+    \? ) echo "Usage: cmd [-a] [-r] [-d]"
+      ;;
+  esac
+done
 
