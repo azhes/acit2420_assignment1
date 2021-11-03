@@ -15,5 +15,6 @@ while getopts ":n:h" opt; do
     h ) echo "Usage: cmd [-n] [file]"
       ;;
     \? ) echo "Usage: cmd [-n] [file]"
+      ;;
   esac
 done
