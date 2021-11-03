@@ -4,18 +4,19 @@
 # Usage: links file [option]
 # Option: -f writes the output to a file
 
-url="$1"
+url="$2"
 
 newFile="pageLinks"
 
 wget -O $newFile $url
 
-if [ "$2" == "-f" ]
-  then
-    grep -Po '(?<=href=")(https)[^"]*' $newFile > links_file
-  else
-    grep -Po '(?<=href=")(https)[^"]*' $newFile
-fi
-
+while getopts ":f" opt; do
+  case ${opt} in
+    f ) grep -Po '(?<=href=")(https)[^"]*' $newFile > links_file
+      ;;
+    \? ) echo "Usage: cmd [-f] [url]"
+      ;;
+  esac
+done
 rm $newFile
 
