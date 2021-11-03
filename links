@@ -13,6 +13,7 @@ wget -O $newFile $url
 while getopts ":f" opt; do
   case ${opt} in
     f ) grep -Po '(?<=href=")(https)[^"]*' $newFile > links_file
+    echo "Write successful."
       ;;
     \? ) echo "Usage: cmd [-f] [url]"
       ;;
